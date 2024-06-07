@@ -7,6 +7,7 @@ __pycache__/
 *$py.class
 
 # Django
+.venv
 *.log
 *.pot
 *.pyc
