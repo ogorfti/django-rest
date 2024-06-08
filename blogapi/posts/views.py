@@ -1,7 +1,9 @@
-from .serializers import PostSerializer
+from .serializers import PostSerializer, UserSerializer
 from .models import Post
 from rest_framework import generics, permissions
 from .permissions import testSec
+from django.contrib.auth import get_user_model
+
 
 class PostList(generics.ListCreateAPIView):
     # permission_classes = [permissions.IsAuthenticated, ]
@@ -13,3 +15,11 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [testSec, ]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+class UserList(generics.ListCreateAPIView):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
